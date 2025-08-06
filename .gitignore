@@ -1,0 +1,8 @@
+#Ignore folder mu-plugins
+mu-plugins/
+
+#Ignore folder plugins
+plugins/
+
+#Ignore folder uploads
+uploads/
