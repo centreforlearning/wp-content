@@ -1,0 +1,23 @@
+name: Deploy to GoDaddy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy to GoDaddy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /home/moderncflhosting/public_html/wp-content/
+          exclude: |
+            wp-content/uploads/**
+            *.log
+            *.sql
